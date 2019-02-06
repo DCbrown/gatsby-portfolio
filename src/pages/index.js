@@ -1,9 +1,9 @@
 import React from 'react'
 import Helmet from 'react-helmet'
+import { Link } from 'gatsby'
 
 import Layout from '../components/layout'
-// import Lightbox from 'react-images'
-import Gallery from '../components/Gallery'
+import RecentProjects from '../components/RecentProjects'
 
 import thumb01 from '../assets/images/thumbs/01.jpg'
 import thumb02 from '../assets/images/thumbs/02.jpg'
@@ -26,45 +26,7 @@ class HomeIndex extends React.Component {
     constructor() {
         super();
 
-        this.state = {
-            lightboxIsOpen: false,
-            currentImage: 0,
-        };
-
-        this.closeLightbox = this.closeLightbox.bind(this);
-        this.gotoNext = this.gotoNext.bind(this);
-        this.gotoPrevious = this.gotoPrevious.bind(this);
-        this.openLightbox = this.openLightbox.bind(this);
-        this.handleClickImage = this.handleClickImage.bind(this);
-    }
-
-    openLightbox (index, event) {
-        event.preventDefault();
-        this.setState({
-            currentImage: index,
-            lightboxIsOpen: true,
-        });
-    }
-    closeLightbox () {
-        this.setState({
-            currentImage: 0,
-            lightboxIsOpen: false,
-        });
-    }
-    gotoPrevious () {
-        this.setState({
-            currentImage: this.state.currentImage - 1,
-        });
-    }
-    gotoNext () {
-        this.setState({
-            currentImage: this.state.currentImage + 1,
-        });
-    }
-    handleClickImage () {
-        if (this.state.currentImage === this.props.images.length - 1) return;
-
-        this.gotoNext();
+        this.state = {};
     }
 
     render() {
@@ -81,7 +43,7 @@ class HomeIndex extends React.Component {
                 <div id="main">
                     <section id="one">
                         <h2>Recent Projects</h2>
-                        <Gallery images={DEFAULT_IMAGES.map(({ id, src, thumbnail, caption, live, github }) => ({
+                        <RecentProjects images={DEFAULT_IMAGES.map(({ id, src, thumbnail, caption, live, github }) => ({
                             src,
                             thumbnail,
                             caption,
@@ -90,7 +52,7 @@ class HomeIndex extends React.Component {
                         }))} />
 
                         <ul className="actions">
-                            <li><a href="#" className="button more">Full Portfolio</a></li>
+                            <li><Link className="button more" to="/projects/">Full Portfolio</Link></li>
                         </ul>
                     </section>
 
